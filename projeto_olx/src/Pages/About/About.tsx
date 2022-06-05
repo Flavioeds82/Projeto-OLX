@@ -1,8 +1,12 @@
 import React from "react";
 import { useState } from 'react';
+import { Link } from "react-router-dom";
 
 export function About(){
    return(
-      <div>***About***</div>
+      <div>
+         <h1>About</h1>
+         <Link to={'/'}>Home</Link>
+      </div>
    )
 }
