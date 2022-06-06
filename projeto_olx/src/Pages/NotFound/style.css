@@ -1,0 +1,29 @@
+.container-404{
+   display: flex;
+   align-items: center;
+   flex-direction: column;
+   background-color: #fff;
+   text-align: center;
+   }
+.page-404{
+   background-image: url(../../images/404.jpg);
+   background-size:contain;
+   background-repeat: no-repeat;
+   width: 100vw;
+   height: 100vh;
+   margin-left: 200px;
+   
+}
+.link{
+   text-decoration: none;
+   color: #444;
+   font-size: 20px;
+   font-weight: bold;
+   background-color: #fff;
+   position: absolute;
+   padding-top: 50px;
+  
+}
+.link:hover{
+   color: #999;
+}
