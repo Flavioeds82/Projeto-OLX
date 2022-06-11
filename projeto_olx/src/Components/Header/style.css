@@ -76,6 +76,18 @@ li{
 .link-menu:hover{
    color: #aaa;
 }
+.link-menu-sair{
+   background-color: #fff;
+   border:none;
+   font-size: 18px;
+   color: #444;
+   font-weight: bold;
+   cursor: pointer;
+}
+.link-menu-sair:hover{
+   background-color: #fff;
+   color: #aaa;
+}
 .link-menu-button{
    text-decoration: none;
    background-color: #ee7128;

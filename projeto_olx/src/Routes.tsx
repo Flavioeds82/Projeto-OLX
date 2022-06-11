@@ -5,12 +5,14 @@ import {Home} from './Pages/Home';
 import {About} from './Pages/About';
 import { NotFound } from "./Pages/NotFound";
 import { Signin } from "./Pages/Signin";
+import { Signup } from "./Pages/Signup";
 
 export function RouteList(){
    return useRoutes([
       {path: '/', element: <Home/>},
       {path: '/about', element: <About/>},
       {path: '*', element: <NotFound/>},
-      {path: '/signin', element: <Signin/>}
+      {path: '/signin', element: <Signin/>},
+      {path: '/signup', element: <Signup/>}
    ])
 }

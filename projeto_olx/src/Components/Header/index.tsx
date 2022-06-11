@@ -1,10 +1,16 @@
 import './style.css';
 import { Link } from 'react-router-dom';
-import { isLogged } from '../../Helpers/AuthHandler';
+import { isLogged, Logout } from '../../Helpers/AuthHandler';
 
 export function Header(){
 
-  let logged = isLogged();
+  let logged = isLogged(); // Define o menu para logados e não logados.
+
+  function logout(){
+    Logout();
+    window.location.href = '/';
+  }
+  
   return(
          <header className='header'>
             <div className="container">
@@ -24,7 +30,7 @@ export function Header(){
                               <Link to='/my-account' className='link-menu'>Minha Conta</Link>
                             </li>
                             <li>
-                              <Link to='/logout' className='link-menu'>Sair</Link>
+                              <button className='link-menu-sair' onClick={logout}>Sair</button>
                             </li>
                             <li>
                               <Link to='/' className='link-menu-button'>Postar um anúncio</Link>

@@ -11,3 +11,6 @@ export function Login(token:string, remPassword:boolean = false ){
       Cookies.set('token', token);
    }
 }
+export function Logout(){
+   Cookies.remove('token');
+}
