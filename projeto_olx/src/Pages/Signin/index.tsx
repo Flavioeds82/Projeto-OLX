@@ -1,7 +1,7 @@
 import React, { FormEvent } from "react";
 import { useState } from 'react';
 import { Link } from "react-router-dom";
-import './style.css';
+import './style-signin.css';
 import { Api } from "../../Helpers/Api";
 import { Login } from "../../Helpers/AuthHandler";
 
@@ -27,16 +27,18 @@ export function Signin(){
 
       
       const json = await Api.login(email, password);
-      if(!json.error){
-         Login(userToken, remPassword );
-         window.location.href = '/';
-      }else{ 
-         setError(json.error)
-         setTimeout(()=>{
-            window.location.href = '/signin';
-         },1500)
-         
+      if(json !== -1){
+         if(!json.error){
+                  Login(userToken, remPassword );
+                  window.location.href = '/';
+               }else{ 
+                  setError(json.error)
+                  setDisabled(false);
+               }
+      }else{
+         setError('Não foi possivel efetuar o Login. Tente mais tarde')
       }
+      
 
    }
    
