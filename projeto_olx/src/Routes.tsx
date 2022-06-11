@@ -13,6 +13,7 @@ export function RouteList(){
       {path: '/about', element: <About/>},
       {path: '*', element: <NotFound/>},
       {path: '/signin', element: <Signin/>},
-      {path: '/signup', element: <Signup/>}
+      {path: '/signup', element: <Signup/>},
+      
    ])
 }

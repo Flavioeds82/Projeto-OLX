@@ -6,7 +6,15 @@ const BASEAPI = 'http://alunos.b7web.com.br:501'
 
 //----------------------------- POST ------------------------------//
 
-async function apiFetchPost(endpoint: string, body: {email:string, password:string, token ?: string}) {
+async function apiFetchPost(
+   endpoint: string, 
+   body: {
+      email:string, 
+      password:string, 
+      name ?:string, 
+      state?:string,  
+      token ?: string}
+   ) {
 
    if(!body.token){
       let token = Cookies.get('token');
@@ -27,9 +35,6 @@ async function apiFetchPost(endpoint: string, body: {email:string, password:stri
    }
    return json;
    }catch(e){
-      console.log(e)
-      alert('Desculpe infelizmente não foi possível realizar o Login. Tente mais tarde.')
-      window.location.href = '/signin';
       return -1;
    }
    
@@ -38,14 +43,16 @@ async function apiFetchPost(endpoint: string, body: {email:string, password:stri
 
 //----------------------------- GET ------------------------------//
 
-async function apiFetchGet(endpoint: string, body: {email ?:string, password ?:string, token ?: string}) {
+async function apiFetchGet(endpoint: string, body ?: {email ?:string, password ?:string, token ?: string}) {
 
    //---------VERIFICAÇÃO DO TOKEN ---------//
-
-   if(!body.token){
-      let token = Cookies.get('token');
-      if(token){body.token = token;}
+   if(body){
+      if(!body.token){
+         let token = Cookies.get('token');
+         if(token){body.token = token;}
+      }
    }
+   
 
    //--------- REQUISIÇÃO GET  ---------//
 
@@ -64,5 +71,16 @@ export const Api = {
         {email, password}
      );
      return json;
+   },
+   register: async function (email:string, password:string, name:string, state:string) {
+     const json = await apiFetchPost(
+        '/user/signup',
+        {email, password, name, state}
+     )
+     return json;
+   },
+   getCategory: async function(){
+      const json = await apiFetchGet('/categories');
+      return json.categories;
    }
 };

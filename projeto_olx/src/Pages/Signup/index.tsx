@@ -26,24 +26,30 @@ export function Signup(){
    async function handleSubmit(e: FormEvent<HTMLFormElement>){
       e.preventDefault();
       setDisabled(true);
+      setError('');
+
+      if(password !== confirmPassword){
+         setError('As senhas não coincidem')
+         return;
+      }
 
       
-   //    const json = await Api.login(email, password);
-   //    if(json !== -1){
-   //       if(!json.error){
-   //                Login(userToken, remPassword );
-   //                window.location.href = '/';
-   //             }else{ 
-   //                setError(json.error)
-   //                setDisabled(false);
-   //             }
-   //    }else{
-   //       setError('Não foi possivel efetuar o Login. Tente mais tarde')
-   //    }
+      const json = await Api.register(name, email, password, state);
+      if(json !== -1){
+         if(!json.error){
+                  Login(userToken);
+                  window.location.href = '/';
+               }else{ 
+                  setError(json.error);
+                  setDisabled(false);
+               }
+      }else{
+         setError('Não foi possivel efetuar o Login. Tente mais tarde');
+      }
       
 
-   // }
    }
+   
    return(
       <div className="container-signup">
          
