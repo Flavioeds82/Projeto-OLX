@@ -7,19 +7,15 @@ import {Footer} from '../src/Components/Footer'
 
 
 function App() {
+  
   const [count, setCount] = useState(0)
 
   return (
-
-    
         <div className="App">
           <Header/>
           <RouteList/>
           <Footer/>
         </div>
-
-   
-    
   )
 }
 

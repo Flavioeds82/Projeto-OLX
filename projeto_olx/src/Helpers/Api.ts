@@ -1,18 +1,18 @@
 import Cookies from "js-cookie";
-import axios from 'axios';
+// import axios from 'axios';
 import qs from 'qs';
 
-const BASEAPI = 'http://alunos.b7web.com.br:501'
+const BASEAPI = 'http://localhost:5001'
 
 //----------------------------- POST ------------------------------//
 
 async function apiFetchPost(
    endpoint: string, 
    body: {
-      email:string, 
-      password:string, 
       name ?:string, 
+      email:string, 
       state?:string,  
+      password:string, 
       token ?: string}
    ) {
 
@@ -28,13 +28,13 @@ async function apiFetchPost(
       method: 'POST',
       headers: {'Accept': 'application/json', 'Content-Type': 'application/json'},
       body: JSON.stringify(body)
-   });
-   const json = await res.json();
-   if(json.notallowed){
-      window.location.href = '/signin';
-   }
-   return json;
-   }catch(e){
+      });
+      const json = await res.json();
+      if(json.notallowed){
+         window.location.href = '/signin';
+      }
+      return json;
+   }catch{
       return -1;
    }
    
@@ -72,15 +72,19 @@ export const Api = {
      );
      return json;
    },
-   register: async function (email:string, password:string, name:string, state:string) {
+   register: async function ( name:string, email:string, password:string, state:string) {
      const json = await apiFetchPost(
         '/user/signup',
         {email, password, name, state}
-     )
+     );
      return json;
    },
    getCategory: async function(){
       const json = await apiFetchGet('/categories');
       return json.categories;
+   },
+   getStates: async function(){
+      const json = await apiFetchGet('/states');
+      return json.states;
    }
 };

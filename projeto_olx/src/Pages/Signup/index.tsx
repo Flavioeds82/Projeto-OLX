@@ -1,4 +1,4 @@
-import React, { FormEvent } from "react";
+import React, { FormEvent, useEffect } from "react";
 import { useState } from 'react';
 import { Link } from "react-router-dom";
 import './Signup.css';
@@ -9,18 +9,26 @@ export function Signup(){
 
    //---------------- CONTANTS ---------------//
       // Constants used for form control //
-   const [name, setName] = useState<string>('');
    const [email, setEmail] = useState<string>('');
+   const [name, setName] = useState<string>('');
+   const [stateLoc, setStateLoc] = useState<string>('');
    const [password, setPassword] = useState<string>('');
-   const [confirmPassword, setconfirmPassword] = useState<string>('');
-   const [state, setState] = useState<string>('');
+   const [confirmPassword, setConfirmPassword] = useState<string>('');
+   const [remPassword, setRemPassword] = useState<boolean>(false);
    const [disabled, setDisabled]= useState<boolean>(false);
    const [userToken, setUserToken] = useState<string>('')
    const [error, setError] = useState<string>('');
+   const [stateList, setStateList] = useState<any[]>([]);
 
-   
+   //---------------- USE EFFECTS ---------------//
 
-
+   useEffect(()=>{
+      const getStates = async()=>{
+         const slist = await Api.getStates();
+         setStateList(slist)
+      }
+      getStates();
+   }, [])
    //---------------- FUNCTIONS ---------------//
       // Functions used for form control //
    async function handleSubmit(e: FormEvent<HTMLFormElement>){
@@ -28,114 +36,136 @@ export function Signup(){
       setDisabled(true);
       setError('');
 
-      if(password !== confirmPassword){
-         setError('As senhas não coincidem')
-         return;
+      try {
+         if(password !== confirmPassword ){throw "Senhas não conferem"}
+         const json = await Api.register(name, email, password, stateLoc);
+         if(json === -1){throw "Não foi possivel realizar o cadastro. Tente novamente"};
+         if(!json.token){throw "Ocorreu um erro. Tente novamente"};
+         Login(json.token);
+         window.location.href = '/';   
+ 
+      } catch (error:any) {
+         setError(error);
+         setDisabled(false);
+        
       }
-
-      
-      const json = await Api.register(name, email, password, state);
-      if(json !== -1){
-         if(!json.error){
-                  Login(userToken);
-                  window.location.href = '/';
-               }else{ 
-                  setError(json.error);
-                  setDisabled(false);
-               }
-      }else{
-         setError('Não foi possivel efetuar o Login. Tente mais tarde');
-      }
-      
-
    }
    
    return(
-      <div className="container-signup">
+      <div className="container-signin">
          
+         <form action="" className="form-signin" onSubmit={handleSubmit}>
             {error &&
               <div className="error">{error}</div> 
             }
-         
-         <form action="" className="form-signup" onSubmit={handleSubmit}>
             <div className="title">
                <h1>Cadastro</h1>
             </div>
             <label htmlFor=""className="form-area">
-               <div className="form-title" id='name' placeholder={'Nome Completo'}>Nome </div>
-               <div className="form-input">
-                  <input 
-                     type="text"
-                     placeholder="Nome Completo"  
-                     disabled={disabled}
-                     value={name}
-                     onChange={e=>setName(e.target.value)} 
-                     required
-                  />
+               <div className="left">
+                  <div className="form-title">Nome</div>
+               </div>
+               <div className="right">
+                 <div className="form-input">
+                     <input 
+                        placeholder="Nome Completo"
+                        type="text"  
+                        disabled={disabled}
+                        value={name}
+                        onChange={e=> setName(e.target.value)} 
+                        required
+                     />
+                  </div> 
                </div>
             </label>
-            
             <label htmlFor=""className="form-area">
-               <div className="form-title">Email</div>
-               <div className="form-input">
-                  <input 
-                     type="email"
-                     placeholder="Email"  
-                     disabled={disabled}
-                     value={email}
-                     onChange={e=>setEmail(e.target.value)} 
-                     required
-                  />
+               <div className="left">
+                  <div className="form-title">E-mail</div>
                </div>
+               <div className="right">
+                 <div className="form-input">
+                     <input 
+                        
+                        type="email"  
+                        disabled={disabled}
+                        placeholder="E-mail"
+                        value={email}
+                        onChange={(e)=> setEmail(e.target.value)} 
+                        required
+                     />
+                  </div> 
+               </div>
+               
             </label>
-
             <label htmlFor=""className="form-area">
-               <div className="form-title">Senha</div>
-               <div className="form-input">
-               <input 
-                     type="password"
-                     placeholder="Senha"  
-                     disabled={disabled}
-                     value={password}
-                     onChange={e=>setPassword(e.target.value)} 
-                     required
-                  />
+               <div className="left">
+                  <div className="form-title">Senha</div>
                </div>
+               <div className="right">
+                  <div className="form-input">
+                     <input 
+                           type="password"
+                           placeholder="Senha"  
+                           disabled={disabled}
+                           value={password}
+                           onChange={e=> setPassword(e.target.value)} 
+                           required
+                        />
+                  </div>
+               </div>
+               
             </label>
-
+            <label htmlFor=""className="form-area">
+               <div className="left">
+                  <div className="form-title">Confirmar </div>
+               </div>
+               <div className="right">
+                  <div className="form-input">
+                     <input 
+                           type="password"  
+                           disabled={disabled}
+                           placeholder="Confirmar senha"
+                           value={confirmPassword}
+                           onChange={e=> setConfirmPassword(e.target.value)} 
+                           required
+                        />
+                  </div>
+               </div>
+               
+            </label>
             <label htmlFor="checkbox"className="form-area">
-               <div className="form-title">Repetir</div>
-               <div className="form-input">
-                  <input 
-                     type="password"
-                     placeholder="Confirmar Senha" 
-                     disabled={disabled}
-                     value={confirmPassword}
-                     onChange={e=>setconfirmPassword(e.target.value)}
-                  />
-               </div>
+               
+                  <div className="left">
+                     <div className="form-title">Estado</div>
+                  </div>
+                  <div className="right">
+                     <div className="form-input">
+                        <select 
+                        name="states" 
+                        id="states"
+                        value={stateLoc}
+                        onChange={(e)=> setStateLoc(e.target.value)}
+                        >
+                           {
+                              stateList.map((i,k)=>
+                                 <option key={k} value={i.name}>{i.name}</option>
+                              )
+                           }
+                        </select>
+                     </div>
+                  </div>
+                  
+              
+               
             </label>
-
             <label htmlFor=""className="form-area">
-               <div className="form-title">Estado</div>
-               <div className="form-input">
-                  <select name="Estados" id="estados">
-                     <option value="RJ">RJ</option>
-                     <option value="RJ">SP</option>
-                     <option value="RJ">MG</option>
-
-
-                  </select>
-               </div>
-            </label>
-
-            <label htmlFor=""className="form-area">
-               <div className="form-title"></div>
+               {/* <div className="form-title"></div> */}
                <div className="form-input">
                   <button 
+                     className="submit-button"
                      type="submit" 
                      disabled={disabled}> 
-                     Cadastrar 
+                     Fazer Cadastro 
                   </button>
                </div>
             </label>

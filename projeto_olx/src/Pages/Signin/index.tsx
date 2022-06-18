@@ -1,7 +1,7 @@
 import React, { FormEvent } from "react";
 import { useState } from 'react';
 import { Link } from "react-router-dom";
-import './style-signin.css';
+import './Signin.css';
 import { Api } from "../../Helpers/Api";
 import { Login } from "../../Helpers/AuthHandler";
 
@@ -24,6 +24,7 @@ export function Signin(){
    async function handleSubmit(e: FormEvent<HTMLFormElement>){
       e.preventDefault();
       setDisabled(true);
+      setError('');
 
       
       const json = await Api.login(email, password);
@@ -36,6 +37,7 @@ export function Signin(){
                   setDisabled(false);
                }
       }else{
+         setDisabled(false);
          setError('Não foi possivel efetuar o Login. Tente mais tarde')
       }
       
@@ -45,54 +47,69 @@ export function Signin(){
    return(
       <div className="container-signin">
          
+         <form action="" className="form-signin" onSubmit={handleSubmit}>
             {error &&
               <div className="error">{error}</div> 
             }
-         
-         <form action="" className="form-signin" onSubmit={handleSubmit}>
             <div className="title">
                <h1>Login</h1>
             </div>
             <label htmlFor=""className="form-area">
-               <div className="form-title">Email</div>
-               <div className="form-input">
-                  <input 
-                     type="email"  
-                     disabled={disabled}
-                     value={email}
-                     onChange={e=>setEmail(e.target.value)} 
-                     required
-                  />
+               <div className="left">
+                  <div className="form-title">Email</div>
                </div>
+               <div className="right">
+                 <div className="form-input">
+                     <input 
+                        
+                        type="email"  
+                        disabled={disabled}
+                        value={email}
+                        onChange={e=>setEmail(e.target.value)} 
+                        required
+                     />
+                  </div> 
+               </div>
+               
             </label>
             <label htmlFor=""className="form-area">
-               <div className="form-title">Senha</div>
-               <div className="form-input">
-               <input 
-                     type="password"  
-                     disabled={disabled}
-                     value={password}
-                     onChange={e=>setPassword(e.target.value)} 
-                     required
-                  />
+               <div className="left">
+                  <div className="form-title">Senha</div>
                </div>
+               <div className="right">
+                  <div className="form-input">
+                     <input 
+                           type="password"  
+                           disabled={disabled}
+                           value={password}
+                           onChange={e=>setPassword(e.target.value)} 
+                           required
+                        />
+                  </div>
+               </div>
+               
             </label>
             <label htmlFor="checkbox"className="form-area">
-               <div className="form-title">Lembrar Senha</div>
-               <div className="form-input">
-                  <input 
-                     type="checkbox" 
-                     disabled={disabled}
-                     checked={remPassword}
-                     onChange={()=>setRemPassword(!remPassword)}
-                     id='ch-01'
-                  />
-               </div>
+               
+               
+                  <div className="form-input">
+                     <div className="form-title">Lembrar Senha</div>
+                     <input 
+                        type="checkbox" 
+                        disabled={disabled}
+                        checked={remPassword}
+                        onChange={()=>setRemPassword(!remPassword)}
+                        className="check-button"
+                     />
+                  </div>
+              
+               
             </label>
             <label htmlFor=""className="form-area">
-               <div className="form-title"></div>
+               {/* <div className="form-title"></div> */}
                <div className="form-input">
                   <button 
+                     className="submit-button"
                      type="submit" 
                      disabled={disabled}> 
                      Login 

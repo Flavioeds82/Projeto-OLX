@@ -14,6 +14,5 @@ export function RouteList(){
       {path: '*', element: <NotFound/>},
       {path: '/signin', element: <Signin/>},
       {path: '/signup', element: <Signup/>},
-      
    ])
 }
