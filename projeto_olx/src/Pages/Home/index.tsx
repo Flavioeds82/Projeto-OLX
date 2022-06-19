@@ -1,4 +1,4 @@
-import React,{ useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Api } from "../../Helpers/Api";
 import './home.css';
@@ -6,17 +6,43 @@ import baby from '../../images/baby.svg';
 import car from '../../images/carro.png';
 import roupa from '../../images/roupa.svg';
 import eletro from '../../images/eletronico.svg'
+import { Ad, Category, State } from "../../Types/Types";
+import { AdItem } from "../../Components/AdItem";
+
 
 export function Home(){
 
-   const [categories, setCategories] = useState<string[]>([]);
+   const [categories, setCategories] = useState<Category[]>([]);
+   const [stateList, setStateList] = useState<State[]>([]);
+   const [adList, setAdList] = useState<Ad[]>([]);
+
+
+   useEffect(()=>{
+      async function getStates(){
+         const slist = await Api.getStates();
+         setStateList(slist);
+      }
+      getStates();
+   }, []);
 
    useEffect(()=>{
       async function getCategories(){
          const cat = await Api.getCategory();
-         // setCategories(cat);// -------------------  aguardando API  ---------//
+         setCategories(cat);
       }
-   })
+      getCategories();
+   }, []);
+
+   useEffect(()=>{
+      async function getRecentAds(){
+         const json = await Api.getAds({
+            sort: RTCSessionDescription,
+            limit: 8
+         });
+         setAdList(json.ads);
+      }
+      getRecentAds();
+   }, [])
 
    return(
       <div className="home-container">
@@ -24,45 +50,41 @@ export function Home(){
             <div className="search-box">
                <form action="/ads" method="get" className="search-form">
                   <input type="text" name="query" placeholder=" O que você procura ?" />
-                  <select name="states" id="states" >
-                     <option value="RJ">Rio de Janeiro</option>
-                     <option value="MG">Minas Gerais</option>
-                     <option value="SP">São Paulo</option>
-                     <option value="ES">Espírito Santo</option>
+                  <select name="states" className="search-states" >
+                  {
+                     stateList.map((i,k)=>
+                        <option key={k} value={i.name}>{i.name}</option>
+                     )
+                  }
                   </select>
-                  <button type="submit">Pesquisar</button>
+                  <button type="submit" className="search-button">Pesquisar</button>
                </form>
             </div>
             <div className="category-list">
-               <div className="cat-area">
-                  <Link className="category-item" to={`/ads?cat`}>
-                     <img src={baby} alt="" />
-                     <div className="text-category">Bebês</div>
-                  </Link>
-               </div>
-               <div className="cat-area">
-                  <Link className="category-item" to={`/ads?cat`}>
-                     <img src={car} alt="" />
-                     <div className="text-category">Carro</div>
-                  </Link>
-               </div>
-               <div className="cat-area">
-                  <Link className="category-item" to={`/ads?cat`} >
-                     <img src={roupa} alt="" />
-                     <div className="text-category">Roupa</div>
-                  </Link>
-               </div>
-               <div className="cat-area">
-                  <Link className="category-item" to={`/ads?cat`}>
-                     <img src={eletro} alt="" />
-                     <div className="text-category">Eletrônico</div>
+               {
+                  categories.map((i,k)=>
+                     <Link  key={k} className="category-item" to={`/ads?cat=${i.slug}`}>
+                        <img src={i.img} alt="" />
+                        <div className="text-category">{i.name}</div>
+                     </Link>
                   
-                  </Link>
-               </div>
-              
+               )}
+                  
             </div>
          </div>
-         
+         <div className="ad-container">
+            <h2 id="Ad-title">Anúncios Recentes</h2>
+            <div className="ad-list">
+               {adList.map((i,k)=>
+                  <AdItem key={k} data={i} />
+               )}
+            </div>
+            <Link to="/ads" className="ad-container-link">Ver todos</Link>
+            <hr />
+            <div className="ad-container-text">
+               Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum consectetur accusantium hic vel, ipsum alias aliquid repellendus dolorem eum vitae molestiae ad reiciendis impedit labore temporibus quos, maiores aut quia minus minima perferendis debitis ratione quam autem. 
+            </div>
+         </div>
       </div>
    )
 }

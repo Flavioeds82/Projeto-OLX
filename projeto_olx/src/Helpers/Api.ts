@@ -86,5 +86,9 @@ export const Api = {
    getStates: async function(){
       const json = await apiFetchGet('/states');
       return json.states;
+   },
+   getAds: async function(data: object){
+      const json = await apiFetchGet('/ad/list', data);
+      return json;
    }
 };
