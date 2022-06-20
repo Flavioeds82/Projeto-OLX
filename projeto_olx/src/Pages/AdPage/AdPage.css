@@ -1,0 +1,94 @@
+hr{
+   margin-top: 10px;
+   /* margin-bottom: 30px; */
+}
+h2{
+   font-size: 30px;
+}
+.AdPage-container{
+   max-width: 100%;
+   overflow: hidden;
+}
+.AdPage-container-area{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   width: 90vw;
+   margin: auto;
+   color: #444;
+}
+
+/* ------------------- LEFT-SIDE -------------- */
+
+.AdPage-container-area-left-side{
+   flex: 1;
+   max-width: 60vw;
+   
+}
+.AdPage-container-area-left-side-box{
+   display: flex;
+   background-color: #FFF;
+   border-radius: 5px;
+   box-shadow: 0px 0px 3px #999;
+   margin: 20px;
+   word-wrap: break-word;
+}
+.AdPage-container-area-left-side-box-image{
+   width: 350px;
+   height: auto;
+   margin-right: 20px;
+}
+.AdPage-container-area-left-side-box-image-slide {
+   margin: 0;
+}
+.AdPage-container-area-left-side-box-image-slide img{
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   background-size: cover;
+   height: 350px;
+}
+.AdPage-container-area-left-side-box-info{
+   flex: 1;
+   text-align: center;
+}
+#date{
+   color: #999;
+   font-size: 12px;
+   margin-top: 20px;
+}
+#views{
+   color: #999;
+   font-size: 12px;
+   text-align: center;
+}
+.AdPage-container-area-left-side-box-info-name{
+   margin: auto;
+}
+.AdPage-container-area-left-side-box-info-desc{
+   padding: 5px;
+   text-align: left;
+}
+.sub-desc{
+   display: flex;
+   flex-direction: column;
+   position: absolute;
+   font-size: 13px;
+   text-align: left;
+   /* margin-top: 20px; */
+}
+
+/* ------------------- RIGHT-SIDE -------------- */
+
+.AdPage-container-area-right-side{
+   width: 40%;
+   margin: 20px;
+   /* background-color: blue; */
+}
+.AdPage-container-area-right-side-box{
+   background-color: #FFF;
+   border-radius: 5px;
+   box-shadow: 0px 0px 3px #999;
+   margin: 20px;
+   padding: 20px;
+}

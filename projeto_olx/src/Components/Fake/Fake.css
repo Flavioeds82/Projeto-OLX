@@ -1,0 +1,23 @@
+@keyframes Fake-container {
+   0% { opacity: 0.10; }
+   15% { opacity: 0.25; }
+   25% { opacity: 0.5; }
+   35% { opacity: 0.75; }
+   50% { opacity: 1; }
+   65% { opacity: 0.75; }
+   75% { opacity: 0.5; }
+   85% { opacity: 0.25; }
+   100% { opacity: 0; }
+   
+}
+.Fake-container{
+   background-color: #DDD;
+   border-radius: 10px;
+   height: 2rem;
+   transition: all ease 0.5s;
+   -webkit-animation: Fake-container 2s linear infinite;
+   -moz-animation: Fake-container 2s linear infinite;
+   -ms-animation: Fake-container 2s linear infinite;
+   -o-animation: Fake-container 2s linear infinite;
+   animation: Fake-container 2s linear infinite;
+}

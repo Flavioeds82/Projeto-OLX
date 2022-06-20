@@ -6,6 +6,8 @@ import {About} from './Pages/About';
 import { NotFound } from "./Pages/NotFound";
 import { Signin } from "./Pages/Signin";
 import { Signup } from "./Pages/Signup";
+import { AdPage } from "./Pages/AdPage";
+
 
 export function RouteList(){
    return useRoutes([
@@ -14,5 +16,6 @@ export function RouteList(){
       {path: '*', element: <NotFound/>},
       {path: '/signin', element: <Signin/>},
       {path: '/signup', element: <Signup/>},
+      {path: '/ad/:id', element: <AdPage/>},
    ])
 }

@@ -43,7 +43,7 @@ async function apiFetchPost(
 
 //----------------------------- GET ------------------------------//
 
-async function apiFetchGet(endpoint: string, body ?: {email ?:string, password ?:string, token ?: string}) {
+async function apiFetchGet(endpoint: string, body ?: {id: string, email ?:string, password ?:string, token ?: string, other ?: boolean}) {
 
    //---------VERIFICAÇÃO DO TOKEN ---------//
    if(body){
@@ -87,8 +87,14 @@ export const Api = {
       const json = await apiFetchGet('/states');
       return json.states;
    },
-   getAds: async function(data: object){
+   getAds: async function(data: any){
       const json = await apiFetchGet('/ad/list', data);
+      return json;
+   },
+   getAd: async function(id:string, other=false){
+      const json = await apiFetchGet(
+         '/ad/item',
+         {id, other});
       return json;
    }
 };
