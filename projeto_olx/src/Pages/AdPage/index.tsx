@@ -96,7 +96,8 @@ export function AdPage(){
                         <hr />
                         <div className="sub-desc">
                            <div id='views'>
-                              {adInfo.views && <p> Visualizações : {adInfo.views} usuários</p>}
+                              {adInfo.views && <p> Visualizações : {adInfo.views}</p>}
+                                 
                            </div>
                         </div>
                      </div>
