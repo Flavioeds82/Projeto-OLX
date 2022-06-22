@@ -99,7 +99,6 @@ export const Api = {
    },
    getOthers: async function(id:string){
       const json = await apiFetchGet('/ad/listOthers',{id});
-      console.log(json)
       return json;
    }
 };

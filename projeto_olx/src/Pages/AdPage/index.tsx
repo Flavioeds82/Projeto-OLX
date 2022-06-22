@@ -27,7 +27,6 @@ export function AdPage(){
       setLoading(false);
       }
       if(id){getAdInfo(id)}
-      console.log(adInfo) 
       },[]);
 
    useEffect(()=>{
@@ -38,7 +37,6 @@ export function AdPage(){
          });
          setAdOthers(json.ads);
       }
-      console.log(adOthers) ;
       getOthersAds();
    }, [])
    
