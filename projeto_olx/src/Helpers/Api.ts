@@ -91,10 +91,15 @@ export const Api = {
       const json = await apiFetchGet('/ad/list', data);
       return json;
    },
-   getAd: async function(id:string, other=false){
+   getAd: async function(id:string, other=true){
       const json = await apiFetchGet(
          '/ad/item',
          {id, other});
+      return json;
+   },
+   getOthers: async function(id:string){
+      const json = await apiFetchGet('/ad/listOthers',{id});
+      console.log(json)
       return json;
    }
 };

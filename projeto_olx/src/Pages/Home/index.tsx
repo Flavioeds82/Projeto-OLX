@@ -6,7 +6,7 @@ import baby from '../../images/baby.svg';
 import car from '../../images/carro.png';
 import roupa from '../../images/roupa.svg';
 import eletro from '../../images/eletronico.svg'
-import { Ad, Category, State } from "../../Types/Types";
+import { Ad, Category, State } from "../../types/Types";
 import { AdItem } from "../../Components/AdItem";
 
 
