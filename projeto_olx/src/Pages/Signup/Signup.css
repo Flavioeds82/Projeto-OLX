@@ -16,9 +16,9 @@
    justify-content: center;
    text-align: center;
    align-items: center;
-   width: 30vw;
+   width: 40vw;
    border: 1px solid #999;
-   padding: 30px;
+   padding: 50px;
    margin-top: 50px;
    border-radius: 10px;
    box-shadow: 1px 1px 3px #999;
@@ -46,21 +46,35 @@
    margin-right: 10px;
 }
 .right{
-   width: 100%;
+   flex: 1;
    display: flex;
    justify-content:left;
-   align-items: flex-start;
 }
 .form-input{
    display: flex;
    justify-content: center;
    align-items: center;
+   width: 300px;
+   text-align: center;
+}
+.form-input-select{
+   margin-top: 5px;
+   
 }
 input{
-   width: 100%;
+   width: 500px;
    height: 30px;
    font-size: 18px;
    margin-top: 10px;
+   border: 1px solid #bbb;
+   border-radius: 5px;
+   text-align: center;
+}
+input::placeholder{
+   color: #CCC;
+}
+.form-input:hover{
+   border-color: #000;
 }
 .check-button{
    width: 20px;

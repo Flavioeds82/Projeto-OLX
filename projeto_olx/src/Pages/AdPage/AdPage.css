@@ -17,6 +17,20 @@ h2{
    font-family: 'Poppins', sans-serif;
 
 }
+.AdPage-container-breadChumb{
+   font-size: 15px;
+   margin-top: 20px;
+}
+.AdPage-container-breadChumb-link{
+   display: inline-block;
+   margin: 0 5px;
+   text-decoration: underline;
+   color: #444;
+   font-weight: bold;
+}
+.AdPage-container-breadChumb-link:hover{
+   color: #999;
+}
 .AdPage-container-area{
    display: flex;
    justify-content: center;

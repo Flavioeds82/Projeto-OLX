@@ -93,7 +93,7 @@ export function Signin(){
                
                
                   <div className="form-input">
-                     <div className="form-title">Lembrar Senha</div>
+                     <div className="form-title-ls">Lembrar Senha</div>
                      <input 
                         type="checkbox" 
                         disabled={disabled}

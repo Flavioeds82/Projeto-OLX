@@ -3,7 +3,7 @@ export type State = {
    name: string
 }
 export type Category = {
-   id: string,
+   _id: string,
    name: string,
    slug: string,
    img: string

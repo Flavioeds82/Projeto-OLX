@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { BrowserRouter } from 'react-router-dom'
 import './App.css'
 import { RouteList } from './Routes'
@@ -8,8 +8,6 @@ import {Footer} from '../src/Components/Footer'
 
 function App() {
   
-  const [count, setCount] = useState(0)
-
   return (
         <div className="App">
           <Header/>

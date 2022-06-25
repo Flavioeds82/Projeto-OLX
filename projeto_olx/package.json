@@ -9,15 +9,19 @@
   },
   "dependencies": {
     "axios": "^0.27.2",
+    "imask": "^6.4.2",
     "js-cookie": "^3.0.1",
+    "numeral": "^2.0.6",
     "qs": "^6.10.5",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
+    "react-imask": "^6.4.2",
     "react-router-dom": "^6.3.0",
     "react-slideshow-image": "^3.7.5"
   },
   "devDependencies": {
     "@types/js-cookie": "^3.0.2",
+    "@types/numeral": "^2.0.2",
     "@types/qs": "^6.9.7",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",

@@ -7,6 +7,8 @@ import { NotFound } from "./Pages/NotFound";
 import { Signin } from "./Pages/Signin";
 import { Signup } from "./Pages/Signup";
 import { AdPage } from "./Pages/AdPage";
+import { CreateAds } from "./Pages/CreateAds";
+// import {RequireAuth} from "./Components/RequireAuth";
 
 
 export function RouteList(){
@@ -17,5 +19,6 @@ export function RouteList(){
       {path: '/signin', element: <Signin/>},
       {path: '/signup', element: <Signup/>},
       {path: '/ad/:id', element: <AdPage/>},
+      {path: '/post-an-ad', element: <CreateAds/>},
    ])
 }

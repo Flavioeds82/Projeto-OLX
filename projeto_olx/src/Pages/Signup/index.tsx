@@ -139,7 +139,7 @@ export function Signup(){
                      <div className="form-title">Estado</div>
                   </div>
                   <div className="right">
-                     <div className="form-input">
+                     <div className="form-input-select">
                         <select 
                         name="states" 
                         id="states"

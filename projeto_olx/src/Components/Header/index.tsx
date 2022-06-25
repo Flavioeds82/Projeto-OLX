@@ -33,7 +33,7 @@ export function Header(){
                               <button className='link-menu-sair' onClick={logout}>Sair</button>
                             </li>
                             <li>
-                              <Link to='/' className='link-menu-button'>Postar um anúncio</Link>
+                              <Link to='/post-an-ad' className='link-menu-button'>Postar um anúncio</Link>
                             </li>
                       </>
                     

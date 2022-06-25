@@ -25,9 +25,11 @@ export function AdPage(){
       setAdInfo(json);
       setDate(formatDate(json.dateCreate))
       setLoading(false);
+      document.documentElement.scrollTop ;
       }
+      
       if(id){getAdInfo(id)}
-      },[]);
+      },[id]);
 
    useEffect(()=>{
       async function getOthersAds(){
@@ -66,6 +68,18 @@ export function AdPage(){
 
    return(
       <div className="AdPage-container">
+          {adInfo.category &&
+            <div className="AdPage-container-breadChumb">
+               Você está aqui:
+                  <Link to={"/"} className="AdPage-container-breadChumb-link">Home</Link>
+                  /
+                  <Link to={`/ads?state=${adInfo.stateName}`} className="AdPage-container-breadChumb-link">{adInfo.stateName}</Link>
+                  /
+                  <Link to={`/ads?state=${adInfo.stateName}&cat=${adInfo.category.slug}`} className="AdPage-container-breadChumb-link">{adInfo.category.name}</Link>
+                  /
+                  <Link to={"#"} className="AdPage-container-breadChumb-link">{adInfo.title}</Link> 
+            </div>
+          }
          <div className="AdPage-container-area">
 
  {/* ------------------- LEFT-SIDE --------------  */}
