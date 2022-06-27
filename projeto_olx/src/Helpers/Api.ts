@@ -4,7 +4,7 @@ import qs from 'qs';
 
 const BASEAPI = 'http://localhost:5001'
 
-//----------------------------- POST ------------------------------//
+//-----------------------------MÉTODO POST ------------------------------//
 
 async function apiFetchPost(
    endpoint: string, 
@@ -41,7 +41,7 @@ async function apiFetchPost(
    
 };
 
-//----------------------------- GET ------------------------------//
+//-----------------------------MÉTODO GET ------------------------------//
 
 async function apiFetchGet(endpoint: string, body ?: {id: string, email ?:string, password ?:string, token ?: string, other ?: boolean}) {
 
@@ -62,6 +62,27 @@ async function apiFetchGet(endpoint: string, body ?: {id: string, email ?:string
    return json;
 };
 
+//-----------------------------MÉTODO FILE ------------------------------//
+async function apiFetchFile(endpoint: string, body:any) {
+   try{
+
+      if(!body.token){
+         let token = Cookies.get('token');
+         if(token){
+            body.append('token', token);
+         }
+      }
+      
+      const res = await fetch(BASEAPI+endpoint, {method: 'POST', body });
+      const json = await res.json();
+      if(json.notallowed){
+         // window.location.href = '/signin';
+      }
+      return json;
+   }catch{
+      return -1;
+   }
+};
 //-------------- CONSULTA API -----------------------//
 
 export const Api = {
@@ -99,6 +120,10 @@ export const Api = {
    },
    getOthers: async function(id:string){
       const json = await apiFetchGet('/ad/listOthers',{id});
+      return json;
+   },
+   addAd: async function(data:any){
+      const json = await apiFetchFile('/ad/add', data);
       return json;
    }
 };

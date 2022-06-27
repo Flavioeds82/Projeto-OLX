@@ -3,8 +3,7 @@ import { Link } from 'react-router-dom';
 import { isLogged, Logout } from '../../Helpers/AuthHandler';
 
 export function Header(){
-
-  let logged = isLogged(); // Define o menu para logados e não logados.
+  let logged = isLogged()
 
   function logout(){
     Logout();

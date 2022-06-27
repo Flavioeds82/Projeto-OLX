@@ -1,4 +1,6 @@
+import Cookies from "js-cookie";
 import { useState, useEffect, FormEvent, useRef, useCallback } from "react";
+import {useNavigate} from 'react-router-dom'
 import { Api } from "../../Helpers/Api";
 import { Login } from "../../Helpers/AuthHandler";
 import { Category } from "../../types/Types";
@@ -11,9 +13,8 @@ export function CreateAds(){
    //---------------- CONTANTS ---------------//
       // Constants used for form control //
       
-
+      const nav = useNavigate();
       const fileField = useRef<any>();
-      const [element, setElement] = useState<any>();
       const [title, setTitle] = useState<string>('');
       const [category, setCategory] = useState<string>('');
       const [categories, setCategories] = useState<Category[]>([]);
@@ -32,7 +33,6 @@ export function CreateAds(){
          digit = digit.replace(/\D/g, "");
          digit = digit.replace(/(\d)(\d{2})$/, "$1,$2");
          digit = digit.replace(/(?=(\d{3})+(\D))\B/g, ".");
-         console.log(digit)
          setPrice(digit);
       }, [price]);
 
@@ -59,17 +59,38 @@ export function CreateAds(){
 
        
          // Functions used for form control //
-         
+
       async function handleSubmit(e: FormEvent<HTMLFormElement>){
          e.preventDefault();
          setDisabled(true);
-         setError('pooiii');
+         setError('');
+         let pn = (priceNegotiable)?"true" : "false";
+         let len = fileField.current.files.length;
+         
          
    
          try {
             if(!title.trim()){throw 'Preencha o campo Título'};
             if(!category){throw 'Escolha uma categoria'};
+
             const fd = new FormData();
+            fd.append('title', title);
+            fd.append('price', price);
+            fd.append('priceneg', pn);
+            fd.append('desc', desc);
+            fd.append('cat', category);
+            
+
+            if(len>0){
+               for(let i=0;i<len;i++){
+                  fd.append('img', fileField.current.files[i]);
+               }
+            }
+
+            const json = await Api.addAd(fd);
+            if(json.error){throw json.error}
+
+            nav(`/ad/${json.id}`);
             
     
          } catch (error:any) {
@@ -82,7 +103,7 @@ export function CreateAds(){
       return(
          <div className="createads-container">
             
-            <form action="" className="createads-container-form" >
+            <form action="" className="createads-container-form" onSubmit={handleSubmit}>
                {error &&
                  <div className="error">{error}</div> 
                }

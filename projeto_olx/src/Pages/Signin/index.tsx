@@ -28,14 +28,16 @@ export function Signin(){
 
       
       const json = await Api.login(email, password);
+      console.log(json.token)
       if(json !== -1){
-         if(!json.error){
-                  Login(userToken, remPassword );
-                  window.location.href = '/';
-               }else{ 
-                  setError(json.error)
-                  setDisabled(false);
-               }
+         if(json.token){
+            setUserToken(json.token);
+            Login(json.token, remPassword );
+            window.location.href = '/';
+         }else{ 
+            setError(json.error)
+            setDisabled(false);
+         }
       }else{
          setDisabled(false);
          setError('Não foi possivel efetuar o Login. Tente mais tarde')
