@@ -1,14 +1,18 @@
-import './style.css';
+import styled from 'styled-components';
 
-export function Template(){
 
-}
-export function Container(){
+export const Template = styled.div`
+   max-width: 1000px;
 
-}
-export function Title(){
+`;
 
-}
-export function Body(){
+export const PageContainer = styled.div`
+   width: 80vw;
+   margin: auto;
 
-}
+`;
+
+export const Title = styled.h1``;
+
+export const Body = styled.div``;
+

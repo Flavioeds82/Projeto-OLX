@@ -51,6 +51,7 @@ export function Home(){
                <form action="/ads" method="get" className="search-form">
                   <input type="text" name="query" placeholder=" O que você procura ?" />
                   <select name="states" className="search-states" >
+                  <option ></option>
                   {
                      stateList.map((i,k)=>
                         <option key={k} value={i.name}>{i.name}</option>
