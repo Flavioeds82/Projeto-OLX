@@ -43,7 +43,20 @@ async function apiFetchPost(
 
 //-----------------------------MÉTODO GET ------------------------------//
 
-async function apiFetchGet(endpoint: string, body ?: {id: string, email ?:string, password ?:string, token ?: string, other ?: boolean}) {
+async function apiFetchGet(
+   endpoint: string, 
+   body ?: {
+      id ?: string, 
+      q ?: string, 
+      cat ?:string, 
+      state ?: string, 
+      offset ?:number, 
+      email ?:string, 
+      password ?:string, 
+      token ?: string, 
+      other ?: boolean
+   }) 
+   {
 
    //---------VERIFICAÇÃO DO TOKEN ---------//
    if(body){
@@ -55,7 +68,6 @@ async function apiFetchGet(endpoint: string, body ?: {id: string, email ?:string
    
 
    //--------- REQUISIÇÃO GET  ---------//
-
    const res = await fetch(`${BASEAPI+endpoint}?${qs.stringify(body)}`);
    const json = await res.json();
    if(json.notallowed){window.location.href = '/signin'};
@@ -76,7 +88,7 @@ async function apiFetchFile(endpoint: string, body:any) {
       const res = await fetch(BASEAPI+endpoint, {method: 'POST', body });
       const json = await res.json();
       if(json.notallowed){
-         // window.location.href = '/signin';
+         window.location.href = '/signin';
       }
       return json;
    }catch{
