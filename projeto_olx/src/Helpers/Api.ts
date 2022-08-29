@@ -53,7 +53,7 @@ async function apiFetchGet(
       offset ?:number, 
       email ?:string, 
       password ?:string, 
-      token ?: string, 
+      token ?: string|undefined, 
       other ?: boolean
    }) 
    {
@@ -66,11 +66,11 @@ async function apiFetchGet(
       }
    }
    
-
+   
    //--------- REQUISIÇÃO GET  ---------//
    const res = await fetch(`${BASEAPI+endpoint}?${qs.stringify(body)}`);
    const json = await res.json();
-   if(json.notallowed){window.location.href = '/signin'};
+   // if(json.notallowed){window.location.href = '/signin'};
    return json;
 };
 
@@ -137,5 +137,10 @@ export const Api = {
    addAd: async function(data:any){
       const json = await apiFetchFile('/ad/add', data);
       return json;
+   },
+   getUser: async function(token: string) {
+      const json = await apiFetchGet('/user/me', {token});
+      return json;
    }
+
 };

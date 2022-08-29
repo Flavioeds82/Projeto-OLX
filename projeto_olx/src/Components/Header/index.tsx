@@ -26,7 +26,7 @@ export function Header(){
                     {logged &&
                       <>
                             <li>
-                              <Link to='/my-account' className='link-menu'>Minha Conta</Link>
+                              <Link to='/user' className='link-menu'>Minha Conta</Link>
                             </li>
                             <li>
                               <button className='link-menu-sair' onClick={logout}>Sair</button>

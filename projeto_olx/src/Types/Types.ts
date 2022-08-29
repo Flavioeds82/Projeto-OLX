@@ -21,3 +21,9 @@ export type Ad = {
    description: string,
    views: number
 }
+export type User = {
+   nome: string,
+   email: string,
+   state: string,
+   ads: Array<Ad>
+}
