@@ -159,7 +159,6 @@ export function Signup(){
                
             </label>
             <label htmlFor=""className="form-area">
-               {/* <div className="form-title"></div> */}
                <div className="form-input">
                   <button 
                      className="submit-button"

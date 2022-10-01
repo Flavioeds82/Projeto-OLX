@@ -1,0 +1,164 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+*{
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+}
+.editAds-container{
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   width: 100%;
+   height: 100%;
+   font-family: 'Poppins', sans-serif;
+}
+.editAds-container-form{
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   width: 50vw;
+   height: 90vh;
+   padding: 20px;
+   margin-top: 10px;
+   border-radius: 10px;
+   color: #444;
+}
+.error{
+   border: 1px solid red;
+   padding: 10px;
+   border-radius: 5px;
+}
+.editAds-container-form-area{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   width: 100%;
+   height: 100%;
+   padding-top: 10px;
+   font-size: 18px;
+}
+.editAds-container-form-area-left{
+   width: 30%;
+   display: flex;
+   justify-content: right;
+   align-items: center;
+   margin-right: 10px;
+}
+.editAds-container-form-area-left-title{
+   flex: 1;
+   display: flex;
+   justify-content: right;
+   margin-top: 10px;
+}
+.editAds-container-form-area-right{
+   flex: 1;
+   display: flex;
+   justify-content:left;
+   align-items: flex-start;
+}
+.editAds-container-form-area-right-input{
+   display: flex;
+   flex: 1;
+   justify-content: left;
+   align-items: center;
+}
+input, textarea, select{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   width: 80%;
+   height: 30px;
+   font-size: 18px;
+   text-align: left;
+   margin-top: 10px;
+   padding-left: 10px;
+   outline: 0;
+   border-radius: 5px;
+   transition: all ease 0.5s;
+}
+input:focus, input:hover{
+   border-color: #444;
+}
+textarea:focus, textarea:hover{
+   border-color: #444;
+   
+}
+select:focus, select:hover{
+   border-color: #444;
+}
+input::placeholder{
+   text-align: left;
+   padding-left: 5px;
+}
+.editAds-container-form-area-right-input-checkbox{
+   width: 26px;
+   height: 50px;
+}
+.editAds-container-form-area-input-submit-button{
+   background-color: #005CC8;
+   border: none;
+   width: 15rem;
+   height: 3rem;
+   border-radius: 5px;
+   color: #FFF;
+   font-size: 20px;
+   font-weight: bold;
+   margin-top: 20px;
+   cursor: pointer;
+}
+.editAds-container-form-area-input-submit-button:hover{
+   background-color: #2a75cc;
+}
+.editAds-container-form-area-input-close-button{
+   background-color: #005CC8;
+   border: none;
+   width: 15rem;
+   height: 3rem;
+   border-radius: 5px;
+   color: #FFF;
+   font-size: 20px;
+   font-weight: bold;
+   margin-top: 20px;
+   margin: 10px;
+   cursor: pointer;
+}
+.editAds-container-form-area-input-close-button:hover{
+   background-color: #2a75cc;
+}
+.editAds-container-form-area-right-input-textarea textarea{
+   width: 340px;
+   height: 150px;
+   resize: none;
+}
+.editAds-container-form-area-right-input-file{
+   margin-top: 10px;
+   width: 100%;
+   border: none;
+}
+.editAds-container-form-area-right-input-file input{
+   font-size: 15px;
+   border: none;
+}
+#cat{
+   color: #999;
+}
+#cat option:focus{
+   color:#999;
+}
+
+.ReactModal__Overlay {
+   opacity: 0;
+   transition: opacity 1000ms ease-in-out;
+}
+
+.ReactModal__Overlay--after-open{
+   opacity: 1;
+}
+
+.ReactModal__Overlay--before-close{
+   opacity: 0;
+}
+
