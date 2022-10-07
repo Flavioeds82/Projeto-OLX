@@ -50,7 +50,6 @@ export function Ads(){
          state,
       });
       setAdList(pages(json.ads, json.total));
-      console.log(json.ads, json.total)
       setAdsTotal(json.total);
       setLoading(false);
       if(json.ads.length === 0){setError('error')}

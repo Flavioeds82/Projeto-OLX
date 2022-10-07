@@ -28,12 +28,12 @@ export function ModalAds(data: any) {
    const [modalIsOpen, setIsOpen] = React.useState(true);
    const nav = useNavigate();
    const fileField = useRef<any>();
-   const [title, setTitle] = useState<string>('');
-   const [category, setCategory] = useState<string>('');
+   const [title, setTitle] = useState<string>(data.data.title);
+   const [category, setCategory] = useState<string>(data.data.category);
    const [categories, setCategories] = useState<Category[]>([]);
-   const [price, setPrice] = useState<string>('');
-   const [priceNegotiable, setPriceNegotiable] = useState<boolean>(false);
-   const [desc, setDesc] = useState<string>(data.desc)
+   const [price, setPrice] = useState<string>(data.data.price);
+   const [priceNegotiable, setPriceNegotiable] = useState<boolean>(data.data.priceNegotiable);
+   const [desc, setDesc] = useState<string>(data.data.desc)
    const [disabled, setDisabled]= useState<boolean>(false);
    const [error, setError] = useState<string>('');
    const ref = useRef(null);
@@ -50,8 +50,7 @@ export function ModalAds(data: any) {
 
    useEffect(()=>{
       openModal();
-      
-   }, [data]);
+   }, [data.data]);
 
    useEffect(()=>{
       const getCategories = async()=>{
@@ -137,7 +136,7 @@ export function ModalAds(data: any) {
                   <div className="editAds-container-form-area-right">
                     <div className="editAds-container-form-area-right-input">
                         <input 
-                           placeholder="Digite o título do anúncio"
+                           placeholder={data.data.title}
                            type="text"  
                            disabled={disabled}
                            value={title}
@@ -157,11 +156,12 @@ export function ModalAds(data: any) {
                         <select 
                            name="category" 
                            id="category"
+                           value={category}
                            disabled={disabled}
                            onChange={e=>setCategory(e.target.value)}
                            required
                         > 
-                        <option value="" id="cat" >Escolha uma categoria</option>
+                        <option value="" placeholder={category} id="cat" >{category}</option>
                         {categories && categories.map((i,k)=>
                            <option key={k} value={i._id}>{i.name}</option>
                         )}

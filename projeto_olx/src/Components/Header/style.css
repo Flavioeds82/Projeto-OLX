@@ -98,3 +98,41 @@ li{
 .link-menu-button:hover{
    background-color: #ee9561;
 }
+@media(max-width:600px){
+   .header{
+      height: auto;
+   }
+   .container{
+      flex-direction: column;
+      height: auto;
+   }
+   .container ul{
+      flex-direction: column;
+      margin-top: 50px;
+   }
+   .container li{
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin-left: 0;
+   }
+   .search-form{
+      flex-direction: column;
+      width: 100%;
+   }
+   .search-box{
+      width: 90%;
+   }
+   .search-form input{
+      width: 100%;
+   }
+   .search-form select{
+      width: 100%;
+      margin-bottom: 10px;
+   }
+   .ad-list{
+      grid-template-columns: 1fr;
+      justify-content: center;
+      align-items: center;
+   }
+}

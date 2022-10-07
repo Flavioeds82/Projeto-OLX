@@ -63,7 +63,7 @@ export function User(){
          if(token){
             const userTemp = await Api.getUser(token);
             setUser(userTemp);
-            setSizeAdList(user.ads.lenght);
+            if(user.ads){setSizeAdList(user.ads.lenght);}
             
          }
          
@@ -220,7 +220,7 @@ export function User(){
                            </>
                         }
                         {openModal &&
-                           <ModalAds data={adEdit} clicked={true} />
+                           <ModalAds data={adEdit}  />
                         }
                         
 

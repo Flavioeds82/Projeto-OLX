@@ -179,3 +179,24 @@ h2{
    background-color: #fff;
    border-radius: 5px;
 }
+@media(max-width:600px){
+   .AdPage-container-area{
+      width: 100%;
+   }
+   .AdPage-container-area-left-side{
+      max-width: none;
+   }
+   .AdPage-container-area-left-side-box-info-desc{
+      width: 100vw;
+      text-align: center;
+      margin: auto;
+   }
+   .AdPage-container-area-right-side{
+      width: 100vw;
+      margin: auto;
+   }
+   .AdPage-container-area-others-list{
+      grid-template-columns: auto;
+   }
+   
+}

@@ -2,7 +2,9 @@ import Cookies from "js-cookie";
 // import axios from 'axios';
 import qs from 'qs';
 
-const BASEAPI = 'http://localhost:5001'
+const BASEAPI = 'http://alunos.b7web.com.br:501';
+
+// 'http://localhost:5001'
 
 //-----------------------------MÉTODO POST ------------------------------//
 
